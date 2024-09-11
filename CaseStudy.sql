@@ -8,7 +8,7 @@ SELECT t1.year, SUM(t1.net_revenue) AS new_customer_revenue
 FROM casestudy t1
 LEFT JOIN casestudy t2 ON t1.customer_email = t2.customer_email AND t1.year =
 t2.year + 1
-WHERE t2.customer_email IS NULL AND t1.year &gt; 2015
+WHERE t2.customer_email IS NULL AND t1.year > 2015
 GROUP BY t1.year;
 
 --3. Existing Customer Growth (Revenue growth from existing customers)
@@ -17,7 +17,7 @@ existing_customer_growth
 FROM casestudy t1
 JOIN casestudy t2 ON t1.customer_email = t2.customer_email AND t1.year =
 t2.year + 1
-WHERE t1.year &gt; 2015
+WHERE t1.year > 2015
 GROUP BY t1.year;
 
 --4. Revenue Lost from Attrition
@@ -26,7 +26,6 @@ FROM casestudy t2
 LEFT JOIN casestudy t1 ON t1.customer_email = t2.customer_email AND t1.year =
 t2.year + 1
 WHERE t1.customer_email IS NULL
-
 AND t2.year IN (2015, 2016)
 GROUP BY t2.year + 1
 HAVING year IN (2016, 2017);
@@ -68,7 +67,7 @@ SELECT t1.year, COUNT(DISTINCT t1.customer_email) AS new_customers
 FROM casestudy t1
 LEFT JOIN casestudy t2 ON t1.customer_email = t2.customer_email AND t1.year =
 t2.year + 1
-WHERE t2.customer_email IS NULL AND t1.year &gt; 2015
+WHERE t2.customer_email IS NULL AND t1.year > 2015
 GROUP BY t1.year;
 
 --10. Lost Customers
